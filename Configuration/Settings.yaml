@@ -1,0 +1,3 @@
+Neos:
+  Setup:
+    initialPasswordFile: '%FLOW_PATH_DATA%Persistent/SetupPassword.txt'
