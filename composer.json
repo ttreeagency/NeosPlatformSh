@@ -1,7 +1,8 @@
 {
-  "description": "Platform.sh for Neos CMS made easy",
-  "type": "neos-package",
   "name": "ttree/neosplatformsh",
+  "type": "neos-package",
+  "license": "MIT",
+  "description": "Platform.sh for Neos CMS made easy",
   "require": {
     "neos/neos": "^3.0",
     "neos/setup": "^4.0",
