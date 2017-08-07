@@ -1,3 +1,14 @@
+Ttree:
+  FlowPlatformSh:
+    deployHooks:
+      commands:
+        'ttree.neosplatformsh:platform:createadminaccount':
+          username: 'admin'
+          password: 'changeme'
+        'ttree.neosplatformsh:platform:importsitepackage':
+          package: 'Neos.Demo'
+        'ttree.neosplatformsh:platform:publishstaticresources': true
 Neos:
   Setup:
     initialPasswordFile: '%FLOW_PATH_DATA%Persistent/SetupPassword.txt'
+

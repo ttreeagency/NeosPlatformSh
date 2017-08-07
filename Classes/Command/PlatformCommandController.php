@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Ttree\NeosPlatformSh\Command;
 
 use Neos\Flow\Annotations as Flow;
-use Ttree\FlowPlatformSh\Annotations as PlatformSh;
+use Neos\Flow\Package\PackageManager;
 use Neos\Flow\Cli\CommandController;
 use Neos\Flow\ResourceManagement\ResourceManager;
 use Neos\Neos\Domain\Repository\SiteRepository;
@@ -41,13 +41,18 @@ class PlatformCommandController extends CommandController
     protected $resourceManager;
 
     /**
-     * @Flow\Internal
-     * @PlatformSh\DeployHook
+     * @var PackageManager
+     * @Flow\Inject
      */
-    public function createAdminAccountCommand()
+    protected $packageManager;
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @Flow\Internal
+     */
+    public function createAdminAccountCommand(string $username, string $password)
     {
-        $username = 'admin';
-        $password = 'changeme';
         $this->outputLine('+ <comment>create user %s</comment>', [$username]);
 
         $user = $this->userService->getUser($username);
@@ -59,23 +64,25 @@ class PlatformCommandController extends CommandController
 
     /**
      * @Flow\Internal
-     * @PlatformSh\DeployHook
+     * @param string $package
      */
-    public function importSitePackageCommand()
+    public function importSitePackageCommand(string $package)
     {
-        $packageKey = 'Neos.Demo';
-        $this->outputLine('+ <comment>import site package %s</comment>', [$packageKey]);
+        if (!$this->packageManager->isPackageActive($package)) {
+            $this->outputLine('+ <comment>skip import site package %s, missing package</comment>', [$package]);
+            return;
+        }
+        $this->outputLine('+ <comment>import site package %s</comment>', [$package]);
 
-        $site = $this->siteRepository->findOneBySiteResourcesPackageKey($packageKey);
+        $site = $this->siteRepository->findOneBySiteResourcesPackageKey($package);
         if ($site === null) {
-            $this->outputLine('Import site "%s" ...', [$packageKey]);
-            $this->siteImportService->importFromPackage($packageKey);
+            $this->outputLine('Import site "%s" ...', [$package]);
+            $this->siteImportService->importFromPackage($package);
         }
     }
 
     /**
      * @Flow\Internal
-     * @PlatformSh\DeployHook
      */
     public function publishStaticResourcesCommand()
     {
