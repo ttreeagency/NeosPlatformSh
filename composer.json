@@ -1,23 +1,24 @@
 {
-  "description": "Platform.sh for Neos CMS made easy",
-  "type": "neos-package",
-  "name": "ttree/neosplatformsh",
-  "require": {
-    "neos/neos": "^3.0",
-    "neos/setup": "^4.0",
-    "ttree/flowplatformsh": "^1.1"
-  },
-  "autoload": {
-    "psr-4": {
-      "Ttree\\NeosPlatformSh\\": "Classes/"
-    }
-  },
-  "extra": {
-    "neos": {
-      "package-key": "Ttree.NeosPlatformSh"
+    "name": "ttree/neosplatformsh",
+    "type": "neos-package",
+    "license": "MIT",
+    "description": "Platform.sh for Neos CMS made easy",
+    "require": {
+        "neos/neos": "^3.0",
+        "neos/setup": "^4.0",
+        "ttree/flowplatformsh": "^1.1"
     },
-    "branch-alias": {
-      "dev-master": "1.1.x-dev"
+    "autoload": {
+        "psr-4": {
+            "Ttree\\NeosPlatformSh\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Ttree.NeosPlatformSh"
+        },
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
     }
-  }
 }
