@@ -4,7 +4,7 @@
     "license": "MIT",
     "description": "Platform.sh for Neos CMS made easy",
     "require": {
-        "neos/neos": "^3.0",
+        "neos/neos": "^3.0 || ^4.0",
         "neos/setup": "^4.0",
         "ttree/flowplatformsh": "^1.1"
     },
